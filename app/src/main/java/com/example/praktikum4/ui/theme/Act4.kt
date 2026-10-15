@@ -42,3 +42,9 @@ fun FormatDataDiri(modifier: Modifier){
     var alamat = remember { mutableStateOf( value = "") }
     var jenis = remember { mutableStateOf( value = "") }
 
+    Column(modifier = Modifier.padding(top = 50.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        OutlinedTextField(
+            value = textNama.value,
+            singleLine = true,
