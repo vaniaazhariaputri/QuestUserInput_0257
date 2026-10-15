@@ -1,5 +1,6 @@
 package com.example.praktikum4
 
+import FormatDataDiri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,8 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Praktikum4Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    FormatDataDiri(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
