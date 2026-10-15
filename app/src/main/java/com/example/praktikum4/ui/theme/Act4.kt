@@ -1,16 +1,14 @@
-package com.example.praktikum4.ui.theme
+
 
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import com.example.praktikum4.R
-
-package com.example.pertemuan5
-
 import android.R.attr.text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
@@ -28,79 +26,57 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun FormatDataDiri(modifier: Modifier){
     //variabel-variabel untuk mengingat nilai masukan dari keyboard
-    var textName by remember {mutableStateOf("")}
-    var textAlamat by remember { mutableStateOf("")}
-    var textJK by remember { mutableStateOf("") }
+    var textNama = remember {mutableStateOf( value = "")}
+    var textAlamat = remember { mutableStateOf( value = "")}
+    var textJK = remember { mutableStateOf( value = "") }
     val gender:List<String> = listOf("Laki-laki", "Perempuan")
 
     //variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
-    var nama by remember { mutableStateOf("") }
-    var alamat by remember { mutableStateOf("") }
-    var jenis by remember { mutableStateOf("") }
+    var nama = remember { mutableStateOf( value = "") }
+    var alamat = remember { mutableStateOf( value = "") }
+    var jenis = remember { mutableStateOf( value = "") }
 
     Column(modifier = Modifier.padding(top = 50.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(
-            value = textName,
+            value = textNama.value,
             singleLine = true,
             shape = MaterialTheme.shapes.large,
             modifier = Modifier.width(250.dp),
-            label = {Text(text = "Nama Lengkap")},
+            label = { Text(text = "Nama Lengkap") },
             onValueChange = {
-                textName = it
+                textNama.value = it
             }
         )
         Row() {
             gender.forEach { item ->
-                Row(modifier = Modifier.selectable(
-                    selected = textJK == item,
-                    onClick = {textJK = item}
-                ), verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier.selectable(
+                        selected = textJK.value == item,
+                        onClick = { textJK.value = item }
+                    ), verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(
-                        selected = textJK == item,
+                        selected = textJK.value == item,
                         onClick = {
-                            item
+                            textJK.value = item
                         })
                     Text(item)
                 }
             }
         }
         OutlinedTextField(
-            value = textAlamat,
+            value = textAlamat.value,
             singleLine = true,
             modifier = Modifier.width(250.dp),
-            label = {Text("Alamat")},
+            label = { Text("Alamat") },
             onValueChange = {
-                textAlamat = it
+                textAlamat.value = it
             }
         )
-        HorizontalDivider(
-            modifier = Modifier.padding(
-                bottom =
-                    dimensionResource(R.dimen.padding_medium),
-                top = dimensionResource(
-                    R.dimen.padding_medium
-                )
-            ),
-            thickness = dimensionResource(R.dimen.divider_tipis),
-            color = Color.DarkGray
-        )
-        Button(
-            modifier = Modifier.fillMaxWidth(1f),
-            enable = textAlamat.isNotEmpty(),
-            onClick = {
-                nama = textName
-                jenis = textJK
-                alamat = textAlamat
-            }
-        ) {
-
-
-
-
